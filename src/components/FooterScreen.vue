@@ -1,4 +1,4 @@
 <template>
-  <p>This game design by Pham Ngoc Son - <a href="#">View Here</a></p>
+  <p>This game design by Pham Ngoc Son - <a href="https://github.com/PhamNgocSonTech" target="_blank">View Here</a></p>
 </template>
 

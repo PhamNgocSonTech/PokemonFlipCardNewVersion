@@ -1,11 +1,20 @@
 <template>
-  <div class="card">
-    <div class="card__inner" :class="{ 'is-flipped': isFlipped }" @click="onToggleFlipCard">
+  <div class="card" :class="{ 'disabled': isDisabled }">
+    <div
+      class="card__inner"
+      :class="{ 'is-flipped': isFlipped }"
+      @click="onToggleFlipCard"
+    >
       <div class="card__face card__face--front">
         <div class="card__content"></div>
       </div>
       <div class="card__face card__face--back">
-        <div class="card__content" :style="{backgroundImage: `url(${require('@/assets/' + imgBackFaceUrl)})`}"></div>
+        <div
+          class="card__content"
+          :style="{
+            backgroundImage: `url(${require('@/assets/' + backImageUrl)})`,
+          }"
+        ></div>
       </div>
     </div>
   </div>
@@ -14,22 +23,38 @@
 <script>
 export default {
   props: {
-    imgBackFaceUrl: {
+    card: {
+      type: [String, Number, Object, Array],
+    },
+
+    backImageUrl: {
       type: String,
       required: true,
-    }
+    },
   },
+
   data() {
     return {
-      isFlipped: false
-    }
+      isFlipped: false,
+      isDisabled: false,
+    };
   },
+
   methods: {
     onToggleFlipCard() {
-      this.isFlipped = !this.isFlipped
-    }
-  }
-}
+      if (this.isDisabled) return false;
+      this.isFlipped = !this.isFlipped;
+      if (this.isFlipped) this.$emit("onFlip", this.card);
+    },
+
+    onFlipBackCard() {
+      this.isFlipped = false;
+    },
+    onEnableMode() {
+      this.isDisabled = true;
+    },
+  },
+};
 </script>
 
 <style lang="css" scoped>
@@ -50,6 +75,9 @@ export default {
   position: relative;
 }
 
+.card.disabled .card__inner {
+  cursor: default;
+}
 .card__inner.is-flipped {
   transform: rotateY(-180deg);
 }
@@ -67,7 +95,7 @@ export default {
 }
 
 .card__face--front .card__content {
-  background: url('../assets/img/icon_back.png') no-repeat center center;
+  background: url("../assets/img/icon_back.png") no-repeat center center;
   background-size: 40px 40px;
   height: 100%;
   width: 100%;
@@ -82,9 +110,7 @@ export default {
   height: 100%;
   width: 100%;
   background-size: contain;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   background-position: center center;
 }
-
-
 </style>
