@@ -1,26 +1,47 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <main-screen v-if="statusMatch === 'default'" v-on:onStart="onHandleBeforeStart($event)" />
+  <footer-copy-right-screen />
+  <interact-screen v-if="statusMatch === 'match'" v-bind:cardsContext="settings.cardsContext" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import MainScreen from './components/MainScreen.vue'
+import FooterCopyRightScreen from './components/FooterScreen.vue'
+import InteractScreen from './components/InteractScreen.vue'
+import { suffled } from './utils/array'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    MainScreen,
+    FooterCopyRightScreen,
+    InteractScreen
+  },
+  data() {
+    return {
+      settings: {
+        totalOfBlocks: 0,
+        cardsContext: [],
+        startedAt: null
+      },
+      statusMatch: 'default'
+    }
+  },
+  methods: {
+    onHandleBeforeStart(config) {
+      console.log('Running Handle', config)
+      //data ready
+      this.settings.totalOfBlocks = config.totalOfBlocks
+      const firstCards = Array.from({ length: this.settings.totalOfBlocks / 2 }, (_, i) => i + 1)
+      this.statusMatch = 'match'
+      const secondCards = [...firstCards]
+      const cards = [...firstCards, ...secondCards]
+
+      this.settings.cardsContext = suffled(suffled(suffled(suffled(cards))))
+
+      this.settings.startedAt = new Date().getTime()
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
