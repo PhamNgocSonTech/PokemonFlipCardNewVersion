@@ -7,6 +7,13 @@
   <InteractScreenComponent
     v-if="statusMatch === 'match'"
     v-bind:cardsContext="settings.cardsContext"
+    v-on:onFinish="onGetResult"
+  />
+
+  <ResultScreenComponent
+    v-if="statusMatch === 'result'"
+    :timer="timer"
+    @onStartAgain="statusMatch = 'default'"
   />
 
   <FooterComponent />
@@ -16,6 +23,7 @@
 import MainScreen from "./components/MainScreen.vue";
 import FooterCopyRightScreen from "./components/FooterScreen.vue";
 import InteractScreen from "./components/InteractScreen.vue";
+import ResultScreen from "./components/ResultScreen.vue";
 import { suffled } from "./utils/array";
 export default {
   name: "App",
@@ -23,6 +31,7 @@ export default {
     MainScreenComponent: MainScreen,
     FooterComponent: FooterCopyRightScreen,
     InteractScreenComponent: InteractScreen,
+    ResultScreenComponent: ResultScreen,
   },
   data() {
     return {
@@ -32,6 +41,7 @@ export default {
         startedAt: null,
       },
       statusMatch: "default",
+      timer: 0,
     };
   },
   methods: {
@@ -50,6 +60,13 @@ export default {
       this.settings.cardsContext = suffled(suffled(suffled(suffled(cards))));
 
       this.settings.startedAt = new Date().getTime();
+    },
+    onGetResult() {
+      // get timer
+      this.timer = new Date().getTime() - this.settings.startedAt;
+
+      // get result to component
+      this.statusMatch = "result";
     },
   },
 };

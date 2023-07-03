@@ -45,6 +45,14 @@ export default {
 
         // reset rules to [] (empty)
         this.rules = [];
+
+        const disableElements = document.querySelectorAll('.screen .card.disabled');
+        // if disableElements == total elements - 2 => all card is flipped  
+        if(disableElements && disableElements.length === this.cardsContext.length - 2) {
+          setTimeout(() => {
+            this.$emit('onFinish')
+          }, 920)
+        }
       } else if (
         this.rules.length === 2 &&
         this.rules[0].value !== this.rules[1].value
