@@ -1,12 +1,37 @@
 <template>
-  <div class="card" :class="{ 'disabled': isDisabled }">
+  <div
+    class="card"
+    :class="{ disabled: isDisabled }"
+    :style="{
+      height: `${(700 - 16 * 4) / Math.sqrt(cardsContext.length) - 16}px`,
+      width: `${
+        (((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) / 4
+      }px`,
+      perspective: `${
+        ((((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) / 4) * 2
+      }px`,
+    }"
+  >
     <div
       class="card__inner"
       :class="{ 'is-flipped': isFlipped }"
       @click="onToggleFlipCard"
     >
       <div class="card__face card__face--front">
-        <div class="card__content"></div>
+        <div
+          class="card__content"
+          :style="{
+            backgroundSize: `${
+              (((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) /
+              4 /
+              3
+            }px ${
+              (((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) /
+              4 /
+              3
+            }px`,
+          }"
+        ></div>
       </div>
       <div class="card__face card__face--back">
         <div
@@ -31,6 +56,12 @@ export default {
       type: String,
       required: true,
     },
+    cardsContext: {
+      type: Array,
+      default: function () {
+        return [];
+      },
+    },
   },
 
   data() {
@@ -54,6 +85,24 @@ export default {
       this.isDisabled = true;
     },
   },
+
+  // computed: {
+  //     cardStyle() {
+  //       const zoomLevel = this.getZoomLevel;
+  //       const cardSize = (920 - 16 * 4) / Math.sqrt(this.cardsContext.length)
+  //       const adjustedSize = cardSize / zoomLevel;
+
+  //       return {
+  //         height: `${adjustedSize}px`,
+  //         width: `${(adjustedSize * 3) / 4}px`,
+  //         perspective: `${(adjustedSize * 3) / 4 * 2}px`
+  //       }
+  //     },
+
+  //     getZoomLevel() {
+  //       return Math.round(window.devicePixelRatio * 100)
+  //     }
+  //   }
 };
 </script>
 
@@ -62,8 +111,9 @@ export default {
   display: inline-block;
   margin-right: 1rem;
   margin-bottom: 1rem;
-  height: 120px;
-  width: 90px;
+  /* perspective: 100px; */
+  /* height: 120px;
+  width: 90px; */
 }
 
 .card__inner {
@@ -96,7 +146,7 @@ export default {
 
 .card__face--front .card__content {
   background: url("../assets/img/icon_back.png") no-repeat center center;
-  background-size: 40px 40px;
+  /* background-size: 40px 40px; */
   height: 100%;
   width: 100%;
 }

@@ -16,12 +16,12 @@
     @onStartAgain="statusMatch = 'default'"
   />
 
-  <FooterComponent />
+  <CopyrightComponent />
 </template>
 
 <script>
 import MainScreen from "./components/MainScreen.vue";
-import FooterCopyRightScreen from "./components/FooterScreen.vue";
+import Copyright from "./components/FooterScreen.vue";
 import InteractScreen from "./components/InteractScreen.vue";
 import ResultScreen from "./components/ResultScreen.vue";
 import { suffled } from "./utils/array";
@@ -29,7 +29,7 @@ export default {
   name: "App",
   components: {
     MainScreenComponent: MainScreen,
-    FooterComponent: FooterCopyRightScreen,
+    CopyrightComponent: Copyright,
     InteractScreenComponent: InteractScreen,
     ResultScreenComponent: ResultScreen,
   },
@@ -72,4 +72,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>
