@@ -2,7 +2,7 @@
   <div class="copyright">
     <p>
       This game design by Pham Ngoc Son -
-      <a href="https://github.com/PhamNgocSonTech" target="_blank">View Here</a>
+      <a href="https://www.facebook.com/PhamNgocSonBB/" target="_blank">View Here</a>
     </p>
   </div>
 </template>
