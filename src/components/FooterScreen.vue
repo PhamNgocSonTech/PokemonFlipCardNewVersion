@@ -1,7 +1,7 @@
 <template>
   <div class="copyright">
     <p>
-      This game design by Pham Ngoc Son -
+      Contact Me Pham Ngoc Son -
       <a href="https://www.facebook.com/PhamNgocSonBB/" target="_blank">View Here</a>
     </p>
   </div>
