@@ -1,8 +1,8 @@
 <template>
   <div class="copyright">
     <p>
-      Contact Me Pham Ngoc Son -
-      <a href="https://www.facebook.com/PhamNgocSonBB/" target="_blank">View Here</a>
+      Contact Me -
+      <a href="https://www.facebook.com/PhamNgocSonBB/" target="_blank">Pham Ngoc Son</a>
     </p>
   </div>
 </template>
