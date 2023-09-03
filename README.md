@@ -1,6 +1,25 @@
-# new-poke-flip-card
+# POKEMON FLIP CARD
+## Pokemon Flip Card is simple game
 
-## Project setup
+
+
+## :mag_right:Technologies And Packages Used
+**Framework: Vue 3** 
+
+
+## :pencil:Features
+List the ready features here:
+- 4 Mode To Play Game
+- Game Screen
+- Result Your Score
+
+## :camera:Screenshots
+![Homepage screenshot](./screenshots/home.png)
+![Gameplay screenshot](./screenshots/gameplay.png)
+![Result screenshot](./screenshots/result.png)
+
+
+## :wrench: Project setup
 ```
 npm install
 ```
