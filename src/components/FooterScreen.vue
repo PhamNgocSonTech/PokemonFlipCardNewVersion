@@ -20,5 +20,5 @@
 
 .copyright a {
   color: #75D701;
-}
+}code
 </style>
